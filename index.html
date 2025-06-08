@@ -20,8 +20,123 @@
   <div class="encabezado">
     <img class="logo_confe" src="Imagenes\CAH__1.png">
     <h1 style="display: flex; align-items: center;">Comisión Nacional De Árbitros</h1>
-    <div> <button class="Sanciones_button">Editar</button> <button class="Sanciones_button"> Nuevo Partido</button>
+    <div> <button style="display: none;" class="Sanciones_button">Editar</button> <button data-bs-toggle="modal"
+      data-bs-target="#modal_nuevo_partido" id="nuevo_partido" class="Sanciones_button"> Nuevo Partido</button>
+    <!-- MODAL OBSERVACIONES -->
+        <form id="Observacion_Arbitros">
+          <div class="modal" id="modal_observacion" tabindex="-1">
+            <div class="modal-dialog"">
+        <div  class=" modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Observacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+
+              <div id="modal_tiempo_juego_display"
+                style="margin: 2% 0%; display: flex;justify-content: center; flex-direction: column-reverse; align-items: center;"
+                id="cronometro-juego">
+                <div style="font-size: 20px;" id="display_juego_observaciones">00:00:00</div>
+                <div>
+                  <button type="button" class="Tiempo_de_juego_button" id="start_observaciones_juego"><i
+                      class="fa-solid fa-play" style="color: black;"></i></button>
+                  <button type="button" class="Tiempo_de_juego_button" id="stop_observaciones_juego"><i
+                      class="fa-solid fa-pause" style="color: black;"></i></button>
+                </div>
+              </div>
+
+
+              <div style="display: none;" class="reloj_modal">
+
+                <label> Tiempo Grabado: <span id="valor-minutos-grabacion"></span>
+                </label>
+                <label>
+                  Tiempo de Juego: <span id="valor-minutos-juego"></span>
+                </label>
+              </div>
+
+              <!-- //dfas asdfasdfadddddddddddddddddddddddddddddddddddd -->
+              <div class="modal_Observaciones_foto">
+                <div class="modal-body" style="display: flex; justify-content: space-around;">
+                  <label
+                    style="background-color: green; cursor: pointer; padding: 1%; width: 25%; font-weight: bold; margin-top:3%; color: whitesmoke; text-align: center; ">
+                    BIEN <input type="radio" name="estado" value="Bien" required>
+                  </label>
+                  <label
+                    style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
+                    REGULAR <input id="modal_regular" type="radio" name="estado" value="Regular" required>
+                  </label>
+                  <label
+                    style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
+                    MAL <input id="modal_mal" type="radio" name="estado" value="Mal" required>
+                  </label>
+
+                </div>
+                <!-- ARBITROS FALTAS TECNICAS -->
+
+                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                  <label style=" padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                    Pasos <input type="radio" name="arbitro_faltas_tecnicas" value="Pasos" required>
+                  </label>
+                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                    Ataque <input type="radio" name="arbitro_faltas_tecnicas" value="Ataque" required>
+                  </label>
+                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                    Golpe <input type="radio" name="arbitro_faltas_tecnicas" value="Golpe" required>
+                  </label>
+                </div>
+                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                    Simulacion <input type="radio" name="arbitro_faltas_tecnicas" value="Simulacion" required>
+                  </label>
+                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                    Camiseta <input type="radio" name="arbitro_faltas_tecnicas" value="Camiseta" required>
+                  </label>
+                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                    Toque Contra <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
+                  </label>
+                </div>
+                <div
+                  style="display: flex; text-align: center; justify-content: space-between; align-content: center; align-items: center;">
+                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                    7 metros <input type="radio" name="arbitro_faltas_tecnicas" value="7 metros" required>
+                  </label>
+
+                </div>
+                <!-- ARBITROS -->
+
+                <div style="display: flex; justify-content: space-around; margin-bottom: 5%;  ">
+                  <label 
+                    style="text-transform: uppercase; text-align: center; background-color: rgba(185, 222, 255, 0.678); padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                     ARBITRO 1 <input type="radio" name="arbitro_Correcto" value="Arbitro 1" required>
+                  </label>
+                  <label 
+                    style="text-transform: uppercase; text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                    ARBITRO 2 <input type="radio" name="arbitro_Correcto" value="Arbitro 2" required>
+                  </label>
+                  <label
+                    style="text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                    AMBOS <input type="radio" name="arbitro_Correcto" value="Ambos" required>
+                  </label>
+                </div>
+
+              </div>
+              <!-- `````````````````````````````````````` -->
+
+              <label keydown.submit(modal-footer) style="display: flex; justify-content: center;"><textarea
+                  style="width: 90%; height: 8dvh; margin-top: 2dvh;" placeholder="Escribe tu observacion aqui..."
+                  name="Observacion_escrita"></textarea></label>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      </form>
     </div>
+
   </div>
   <div>
     <div style="display: flex; justify-content: center; flex-direction: column; margin: 1%;">
@@ -669,6 +784,29 @@
         </div>
       </div>
 
+      <!-- MODALE NUEVO PARTIDO -->
+      <div class="modal" style="margin-top: 15%;" id="modal_nuevo_partido" tabindex="-1">
+        <div class="modal-dialog">
+          <div style="width: 90%" class=" modal-content">
+            <div class="modal-header" style="justify-content: center;">
+              <div class="modal-title">
+                <h5 class="modal-title">Atencion</h5>
+                <br>
+                <div>
+
+                  <p>Perderás todos los datos anteriores ¿Deseas iniciar un nuevo partído? </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button"
+                    style="background-color: rgba(189, 0, 0, 0.842); border-color: rgba(189, 0, 0, 0.842);"
+                    class="btn btn-primary" data-bs-dismiss="modal" id="modale_nuevo_partido_si">Si</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- MODAL BOTONES REINICIAR -->
       <div class="modal" style="margin-top: 15%;" id="modal_tiempo_reset" tabindex="-1">
         <div class="modal-dialog">
@@ -679,7 +817,7 @@
                 <br>
                 <div>
 
-                  <p>Este boton controla y reinicia ambos cronometros ¿Desea reiniciar?</p>
+                  <p>Este boton controla y reinícia ambos cronómetros ¿Desea reiniciar?</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

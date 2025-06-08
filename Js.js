@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-        inputArbitro1.addEventListener('keydown', function(e) {
+        inputArbitro1.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 if (inputArbitro2) inputArbitro2.focus();
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-        inputArbitro2.addEventListener('keydown', function(e) {
+        inputArbitro2.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 inputArbitro2.blur();
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-        inputArbitro1.addEventListener('keydown', function(e) {
+        inputArbitro1.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 if (inputArbitro2) inputArbitro2.focus();
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-        inputArbitro2.addEventListener('keydown', function(e) {
+        inputArbitro2.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 inputArbitro2.blur();
@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // --------------------------------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('[contenteditable]').forEach(function(element) {
-        element.addEventListener('keydown', function(e) {
+    document.querySelectorAll('[contenteditable]').forEach(function (element) {
+        element.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 this.blur(); // Quita el foco y cierra la edición
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (
         e.target.isContentEditable &&
         e.key === 'Enter'
@@ -126,7 +126,7 @@ document.addEventListener('keydown', function(e) {
         e.target.removeAttribute('contenteditable');
     }
 });
-document.addEventListener('dblclick', function(e) {
+document.addEventListener('dblclick', function (e) {
     if (e.target.matches('[contenteditable], h3, p')) {
         e.target.setAttribute('contenteditable', 'true');
         e.target.focus();
@@ -176,7 +176,7 @@ function Cronometro(displayId, startId, stopId, resetId, selectId, maxSeconds = 
         const min = String(Math.floor((this.seconds % 3600) / 60)).padStart(2, '0');
         const sec = String(this.seconds % 60).padStart(2, '0');
         document.getElementById(displayId).textContent = `${hrs}:${min}:${sec}`;
-        
+
     };
 
     this.start = () => {
@@ -198,8 +198,8 @@ function Cronometro(displayId, startId, stopId, resetId, selectId, maxSeconds = 
         <td style="text-align: center; border: 1px solid black; background-color:rgba(160, 160, 160, 0.57)  ; padding: 8px;">Final</td>
         <td style="text-align: center; border: 1px solid black; background-color:rgba(160, 160, 160, 0.57)  ; padding: 8px;">Final</td>
     `;
-                
-    cuerpoTabla.appendChild(nuevaFila2);
+
+                cuerpoTabla.appendChild(nuevaFila2);
                 alert('¡Tiempo Finalizado! Pulsa aceptar.');
                 cronometroGrabado.reset();
                 cronometroJuego.reset();
@@ -239,31 +239,32 @@ function Cronometro(displayId, startId, stopId, resetId, selectId, maxSeconds = 
 
 
 // EVITAR SALTO DE LINEA EN H3 Y MAXIMO DE CARACTERES // -------------------------------------------------------------------------------------------------=======----------------------------------------------------
-document.querySelectorAll('h3[contenteditable="true"]').forEach(function(h3) {
-    h3.addEventListener('keydown', function(e) {
+document.querySelectorAll('h3[contenteditable="true"]').forEach(function (h3) {
+    h3.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
             this.blur(); // Quita el foco
             this.removeAttribute('contenteditable'); // Sale del modo edición
         }
     });
-    h3.addEventListener('input', function() {
+    h3.addEventListener('input', function () {
         this.textContent = this.textContent.toUpperCase();
         const max = 27;
         if (this.textContent.length > max) {
-            this.textContent = this.textContent.slice(0, max);}
-            // Opcional: mueve el cursor al final}
-            const range = document.createRange();
-            const sel = window.getSelection();
-            range.selectNodeContents(this);
-            range.collapse(false);
-            sel.removeAllRanges();
-            sel.addRange(range);
-        
+            this.textContent = this.textContent.slice(0, max);
+        }
+        // Opcional: mueve el cursor al final}
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.selectNodeContents(this);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+
     });
 });
-document.querySelectorAll('h3').forEach(function(h3) {
-    h3.addEventListener('dblclick', function() {
+document.querySelectorAll('h3').forEach(function (h3) {
+    h3.addEventListener('dblclick', function () {
         this.setAttribute('contenteditable', 'true');
         this.focus();
     });
@@ -272,10 +273,10 @@ document.querySelectorAll('h3').forEach(function(h3) {
 // TABLA DEL EQUIPO 1 AGREGAR SANCIONES Y QUITAR CLICK DERECHO
 
 //QUITA EL CLICK DERECHO EN LA TABLA EQUIPO 
-document.getElementById('tabla_equipo1').addEventListener('contextmenu', function(e) {
+document.getElementById('tabla_equipo1').addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
-document.getElementById('tabla_equipo1').addEventListener('contextmenu', function(e) {
+document.getElementById('tabla_equipo1').addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
 // AGREGAR NUMEROS Y SANCIONES
@@ -313,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             let nuevo = prompt("Ingrese números (no repetido):", tdN.textContent.trim());
-            if (nuevo === null) return ;
+            if (nuevo === null) return;
             nuevo = nuevo.trim();
             if (nuevo === "") {
                 tdN.textContent = "";
@@ -322,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (!/^\d+$/.test(nuevo)) {
                 alert("Solo se permiten números.");
-                
+
                 return;
             }
             if (usados.includes(nuevo)) {
@@ -338,98 +339,108 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-    
+
 
 
         // Columna A (máx 1, min vacío)
         const tdA = fila.children[1];
         tdA.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(tdA.textContent.trim() || "0", 10);
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(1, val + 1);
-    }
-    tdA.textContent = val === 0 ? "" : val;
-    if (val === 1) {
-        tdA.style.backgroundColor = "yellow";}
-        else {
-        tdA.style.backgroundColor = "";} // Resetea el color si no es 1
-});
+            e.preventDefault();
+            let val = parseInt(tdA.textContent.trim() || "0", 10);
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(1, val + 1);
+            }
+            tdA.textContent = val === 0 ? "" : val;
+            if (val === 1) {
+                tdA.style.backgroundColor = "yellow";
+            }
+            else {
+                tdA.style.backgroundColor = "";
+            } // Resetea el color si no es 1
+        });
 
 
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
 
         // Columna 2' (máx 3, min vacío)
         const td2 = fila.children[2];
         td2.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(td2.textContent.trim() || "0", 10);
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(3, val + 1);
-    }
-    td2.textContent = val === 0 ? "" : val;
-    if (val === 1) {
-        td2.style.backgroundColor = "#08c70148";}
-        if (val === 2) {
-        td2.style.backgroundColor = "orange";}
-        if (val === 3) {
-        td2.style.backgroundColor = "red";}
-    if (val === 0) {
-        td2.style.backgroundColor = "";}
-});
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+            e.preventDefault();
+            let val = parseInt(td2.textContent.trim() || "0", 10);
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(3, val + 1);
+            }
+            td2.textContent = val === 0 ? "" : val;
+            if (val === 1) {
+                td2.style.backgroundColor = "#08c70148";
+            }
+            if (val === 2) {
+                td2.style.backgroundColor = "orange";
+            }
+            if (val === 3) {
+                td2.style.backgroundColor = "red";
+            }
+            if (val === 0) {
+                td2.style.backgroundColor = "";
+            }
+        });
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
 
         // Columna D (máx 1, min vacío)
         const tdD = fila.children[3];
         tdD.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(tdD.textContent.trim() || "0", 10);
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(1, val + 1);
-    }
-    tdD.textContent = val === 0 ? "" : val;
-    if (val == 1) {
-        
-        tdD.style.backgroundColor = "red";}
-        else {
-        tdD.style.backgroundColor = "";} // Resetea el color si no es 1
-});
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+            e.preventDefault();
+            let val = parseInt(tdD.textContent.trim() || "0", 10);
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(1, val + 1);
+            }
+            tdD.textContent = val === 0 ? "" : val;
+            if (val == 1) {
+
+                tdD.style.backgroundColor = "red";
+            }
+            else {
+                tdD.style.backgroundColor = "";
+            } // Resetea el color si no es 1
+        });
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
 
         // Columna D+A (máx 1, min vacío)
         const tdDA = fila.children[4];
         tdDA.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(tdDA.textContent.trim() || "0", 10);
-    
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(1, val + 1);
-    }
-    tdDA.textContent = val === 0 ? "" : val;
-    if (val == 1) {
-        
-        tdDA.style.backgroundColor = "blue";}
-    else {
-        tdDA.style.backgroundColor = "";} 
-});
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+            e.preventDefault();
+            let val = parseInt(tdDA.textContent.trim() || "0", 10);
+
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(1, val + 1);
+            }
+            tdDA.textContent = val === 0 ? "" : val;
+            if (val == 1) {
+
+                tdDA.style.backgroundColor = "blue";
+            }
+            else {
+                tdDA.style.backgroundColor = "";
+            }
+        });
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
     });
 });
 // --------------------------------------------------------------------------------------------------=======----------------------------------------------------
 
 //QUITA EL CLICK DERECHO EN LA TABLA EQUIPO 2
-document.getElementById('tabla_equipo2').addEventListener('contextmenu', function(e) {
+document.getElementById('tabla_equipo2').addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
-document.getElementById('tabla_equipo1').addEventListener('contextmenu', function(e) {
+document.getElementById('tabla_equipo1').addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
 // AGREGAR NUMEROS Y SANCIONES
@@ -491,89 +502,99 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-    
+
 
 
         // Columna A (máx 1, min vacío)
         const tdA = fila.children[1];
         tdA.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(tdA.textContent.trim() || "0", 10);
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(1, val + 1);
-    }
-    tdA.textContent = val === 0 ? "" : val;
-    if (val === 1) {
-        tdA.style.backgroundColor = "yellow";}
-        else {
-        tdA.style.backgroundColor = "";} // Resetea el color si no es 1
-});
+            e.preventDefault();
+            let val = parseInt(tdA.textContent.trim() || "0", 10);
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(1, val + 1);
+            }
+            tdA.textContent = val === 0 ? "" : val;
+            if (val === 1) {
+                tdA.style.backgroundColor = "yellow";
+            }
+            else {
+                tdA.style.backgroundColor = "";
+            } // Resetea el color si no es 1
+        });
 
 
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
 
         // Columna 2' (máx 3, min vacío)
         const td2 = fila.children[2];
         td2.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(td2.textContent.trim() || "0", 10);
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(3, val + 1);
-    }
-    td2.textContent = val === 0 ? "" : val;
-    if (val === 1) {
-        td2.style.backgroundColor = "#08c70148";}
-        if (val === 2) {
-        td2.style.backgroundColor = "orange";}
-        if (val === 3) {
-        td2.style.backgroundColor = "red";}
-    if (val === 0) {
-        td2.style.backgroundColor = "";}
-});
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+            e.preventDefault();
+            let val = parseInt(td2.textContent.trim() || "0", 10);
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(3, val + 1);
+            }
+            td2.textContent = val === 0 ? "" : val;
+            if (val === 1) {
+                td2.style.backgroundColor = "#08c70148";
+            }
+            if (val === 2) {
+                td2.style.backgroundColor = "orange";
+            }
+            if (val === 3) {
+                td2.style.backgroundColor = "red";
+            }
+            if (val === 0) {
+                td2.style.backgroundColor = "";
+            }
+        });
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
 
         // Columna D (máx 1, min vacío)
         const tdD = fila.children[3];
         tdD.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(tdD.textContent.trim() || "0", 10);
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(1, val + 1);
-    }
-    tdD.textContent = val === 0 ? "" : val;
-    if (val == 1) {
-        
-        tdD.style.backgroundColor = "red";}
-        else {
-        tdD.style.backgroundColor = "";} // Resetea el color si no es 1
-});
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+            e.preventDefault();
+            let val = parseInt(tdD.textContent.trim() || "0", 10);
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(1, val + 1);
+            }
+            tdD.textContent = val === 0 ? "" : val;
+            if (val == 1) {
+
+                tdD.style.backgroundColor = "red";
+            }
+            else {
+                tdD.style.backgroundColor = "";
+            } // Resetea el color si no es 1
+        });
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
 
         // Columna D+A (máx 1, min vacío)
         const tdDA = fila.children[4];
         tdDA.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    let val = parseInt(tdDA.textContent.trim() || "0", 10);
-    
-    if (e.button === 2) { // click derecho
-        val = Math.max(0, val - 1);
-    } else if (e.button === 0) { // click izquierdo
-        val = Math.min(1, val + 1);
-    }
-    tdDA.textContent = val === 0 ? "" : val;
-    if (val == 1) {
-        
-        tdDA.style.backgroundColor = "blue";}
-    else {
-        tdDA.style.backgroundColor = "";} 
-});
-tdA.addEventListener('contextmenu', e => e.preventDefault());
+            e.preventDefault();
+            let val = parseInt(tdDA.textContent.trim() || "0", 10);
+
+            if (e.button === 2) { // click derecho
+                val = Math.max(0, val - 1);
+            } else if (e.button === 0) { // click izquierdo
+                val = Math.min(1, val + 1);
+            }
+            tdDA.textContent = val === 0 ? "" : val;
+            if (val == 1) {
+
+                tdDA.style.backgroundColor = "blue";
+            }
+            else {
+                tdDA.style.backgroundColor = "";
+            }
+        });
+        tdA.addEventListener('contextmenu', e => e.preventDefault());
     });
 });
 
@@ -586,24 +607,23 @@ formObservaciones.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Convierte "hh:mm:ss" a segundos
-function tiempoASegundos(tiempo) {
-    const partes = tiempo.split(':');
-    return (+partes[0]) * 3600 + (+partes[1]) * 60 + (+partes[2]);
-}
+    function tiempoASegundos(tiempo) {
+        const partes = tiempo.split(':');
+        return (+partes[0]) * 3600 + (+partes[1]) * 60 + (+partes[2]);
+    }
 
-// Convierte segundos a "hh:mm:ss"
-function segundosATiempo(segundos) {
-    const hrs = String(Math.floor(segundos / 3600)).padStart(2, '0');
-    const min = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
-    const sec = String(segundos % 60).padStart(2, '0');
-    return `${hrs}:${min}:${sec}`;
-}
+    // Convierte segundos a "hh:mm:ss"
+    function segundosATiempo(segundos) {
+        const hrs = String(Math.floor(segundos / 3600)).padStart(2, '0');
+        const min = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
+        const sec = String(segundos % 60).padStart(2, '0');
+        return `${hrs}:${min}:${sec}`;
+    }
 
     // Obtén los valores directamente de los inputs del formulario
     const minutosGrabacion = document.getElementById('valor-minutos-grabacion').textContent.trim();
     const segundosGrabacion = tiempoASegundos(minutosGrabacion);
     const grabacionMenos = segundosATiempo(Math.max(0, segundosGrabacion - 8));
-console.log(minutosGrabacion);
     const minutosJuego = document.getElementById('valor-minutos-juego').textContent.trim();
     const segundosJuego = tiempoASegundos(minutosJuego);
     const juegoMenos = segundosATiempo(segundosJuego);
@@ -624,7 +644,7 @@ console.log(minutosGrabacion);
 
     // Crea una nueva fila
     const nuevaFila = document.createElement('tr');
-nuevaFila.innerHTML = `
+    nuevaFila.innerHTML = `
     <td style="text-align: center; border: 1px solid black; padding: 8px;">${grabacionMenos}</td>
     <td style="text-align: center; border: 1px solid black; padding: 8px;">${juegoMenos}</td>
     <td style="text-align: center; border: 1px solid black; padding: 8px;"><p style="text-transform: capitalize;" contenteditable>${Faltas}</p></td>
@@ -641,23 +661,23 @@ nuevaFila.innerHTML = `
     cuerpoTabla.appendChild(nuevaFila);
 
     const select = nuevaFila.querySelector('select[name="tablaCreadaSelect"]');
-const td = select.parentElement;
-select.addEventListener('change', function() {
-    if (this.value === 'Bien') {
-        td.style.backgroundColor = 'green';
-        select.style.backgroundColor = 'green';
-    } else if (this.value === 'Regular') {
-        td.style.backgroundColor = 'yellow';
-        select.style.backgroundColor = 'yellow';
-    } else if (this.value === 'Mal') {
-        td.style.backgroundColor = 'red';
-        select.style.backgroundColor = 'red';
-    } else {
-        td.style.backgroundColor = '';
-        select.style.backgroundColor = '';
-    }
-});
-    
+    const td = select.parentElement;
+    select.addEventListener('change', function () {
+        if (this.value === 'Bien') {
+            td.style.backgroundColor = 'green';
+            select.style.backgroundColor = 'green';
+        } else if (this.value === 'Regular') {
+            td.style.backgroundColor = 'yellow';
+            select.style.backgroundColor = 'yellow';
+        } else if (this.value === 'Mal') {
+            td.style.backgroundColor = 'red';
+            select.style.backgroundColor = 'red';
+        } else {
+            td.style.backgroundColor = '';
+            select.style.backgroundColor = '';
+        }
+    });
+
 
 
 
@@ -723,19 +743,18 @@ formObservacionesSanciones.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Obtén los valores directamente de los inputs del formulario
-const minutosGrabacionS = document.getElementById('valor-minutos-grabacion-sanciones').textContent.trim();
-const segundosGrabacionSancion = tiempoASegundos(minutosGrabacionS);
-const grabacionMenosSancion = segundosATiempo(Math.max(0, segundosGrabacionSancion - 8));
-console.log(minutosGrabacionS);
+    const minutosGrabacionS = document.getElementById('valor-minutos-grabacion-sanciones').textContent.trim();
+    const segundosGrabacionSancion = tiempoASegundos(minutosGrabacionS);
+    const grabacionMenosSancion = segundosATiempo(Math.max(0, segundosGrabacionSancion - 8));
+    
+    const minutosJuego = document.getElementById('valor-minutos-juego-sanciones').textContent.trim();
+    const segundosJuegoSancion = tiempoASegundos(minutosJuego);
+    const juegoMenosSancion = segundosATiempo(segundosJuegoSancion);
 
-const minutosJuego = document.getElementById('valor-minutos-juego-sanciones').textContent.trim();
-const segundosJuegoSancion = tiempoASegundos(minutosJuego);
-const juegoMenosSancion = segundosATiempo(segundosJuegoSancion);
-
-const FaltasSancion = document.querySelector('[name="arbitro_faltas_tecnicas_sanciones"]:checked')?.value || '';
-const ObservacionTextoSancion = document.querySelector('[name="Observacion_escrita_sanciones"]')?.value || '';
-const BienSancion = document.querySelector('[name="estado_sanciones"]:checked')?.value || '';
-const ArbitroSancion = document.querySelector('[name="arbitro_correccion_sanciones"]:checked')?.value || '';
+    const FaltasSancion = document.querySelector('[name="arbitro_faltas_tecnicas_sanciones"]:checked')?.value || '';
+    const ObservacionTextoSancion = document.querySelector('[name="Observacion_escrita_sanciones"]')?.value || '';
+    const BienSancion = document.querySelector('[name="estado_sanciones"]:checked')?.value || '';
+    const ArbitroSancion = document.querySelector('[name="arbitro_correccion_sanciones"]:checked')?.value || '';
 
 
 
@@ -748,7 +767,7 @@ const ArbitroSancion = document.querySelector('[name="arbitro_correccion_sancion
     const colorSancion = estadoColorSancion(BienSancion);
     // Crea la fila
     const nuevaFilaAmarillaSanciones = document.createElement('tr');
-nuevaFilaAmarillaSanciones.innerHTML = `
+    nuevaFilaAmarillaSanciones.innerHTML = `
     <td style="text-align: center; border: 1px solid black; padding: 8px;">${grabacionMenosSancion}</td>
     <td style="text-align: center; border: 1px solid black; padding: 8px;">${juegoMenosSancion}</td>
     <td contenteditable style="text-align: center; border: 1px solid black;">
@@ -766,25 +785,25 @@ nuevaFilaAmarillaSanciones.innerHTML = `
     </td>
     <td style="text-align: center; border: 1px solid black; padding: 8px;"><p style="text-transform: capitalize;" contenteditable>${ArbitroSancion}</p></td>
 `;
-cuerpoTablaSanciones.appendChild(nuevaFilaAmarillaSanciones);
+    cuerpoTablaSanciones.appendChild(nuevaFilaAmarillaSanciones);
 
-const selectAmarilla = nuevaFilaAmarillaSanciones.querySelector('select[name="tablaCreadaSelectAmarilla"]');
-const td = selectAmarilla.parentElement;
-selectAmarilla.addEventListener('change', function() {
-    if (this.value === 'Bien') {
-        td.style.backgroundColor = 'green';
-        selectAmarilla.style.backgroundColor = 'green';
-    } else if (this.value === 'Regular') {
-        td.style.backgroundColor = 'yellow';
-        selectAmarilla.style.backgroundColor = 'yellow';
-    } else if (this.value === 'Mal') {
-        td.style.backgroundColor = 'red';
-        selectAmarilla.style.backgroundColor = 'red';
-    } else {
-        td.style.backgroundColor = '';
-        selectAmarilla.style.backgroundColor = '';
-    }
-});
+    const selectAmarilla = nuevaFilaAmarillaSanciones.querySelector('select[name="tablaCreadaSelectAmarilla"]');
+    const td = selectAmarilla.parentElement;
+    selectAmarilla.addEventListener('change', function () {
+        if (this.value === 'Bien') {
+            td.style.backgroundColor = 'green';
+            selectAmarilla.style.backgroundColor = 'green';
+        } else if (this.value === 'Regular') {
+            td.style.backgroundColor = 'yellow';
+            selectAmarilla.style.backgroundColor = 'yellow';
+        } else if (this.value === 'Mal') {
+            td.style.backgroundColor = 'red';
+            selectAmarilla.style.backgroundColor = 'red';
+        } else {
+            td.style.backgroundColor = '';
+            selectAmarilla.style.backgroundColor = '';
+        }
+    });
     // Limpia el formulario y cierra el modal si usas Bootstrap
     formObservacionesSanciones.reset();
     const modal = bootstrap.Modal.getInstance(document.getElementById('modal_sanciones'));
@@ -794,28 +813,29 @@ selectAmarilla.addEventListener('change', function() {
 });
 let tipoSancionSeleccionada = { texto: "Amarilla", color: "yellow" };
 
-document.getElementById('dos_minutos').addEventListener('click', function() {
+// Botón Amarilla (si tienes uno, opcional) IMPORTANTE POSIBLE ERROR
+document.getElementById('a_sancion')?.addEventListener('click', function () {
     tipoSancionSeleccionada = {
-        texto: "2 minutos",
+        texto: "Amarilla",
+        color: "yellow"
+    };
+});
+
+document.getElementById('dos_minutos').addEventListener('click', function () {
+    tipoSancionSeleccionada = {
+        texto: "2 min",
         color: "rgba(185, 222, 255, 0.678)"
     };
 });
 
 // Botón D (descalificación)
-document.getElementById('d_sancion').addEventListener('click', function() {
+document.getElementById('d_sancion').addEventListener('click', function () {
     tipoSancionSeleccionada = {
         texto: "Descalificación",
         color: "red"
     };
 });
 
-// Botón Amarilla (si tienes uno, opcional)
-document.getElementById('a_sancion')?.addEventListener('click', function() {
-    tipoSancionSeleccionada = {
-        texto: "Amarilla",
-        color: "yellow"
-    };
-});
 
 // -------------------------------------------------------------------------------------------------=======----------------------------------------------------
 
@@ -824,7 +844,7 @@ const observacionesBienMalRegular = document.getElementById('Observacion_Arbitro
 observacionesBienMalRegular.addEventListener('submit', function (e) {
     e.preventDefault();
     const Bien = document.querySelector('[name="estado_sanciones"]:checked')?.value;
-    
+
 });
 
 // FALTA TECNICA    
@@ -886,8 +906,8 @@ const botonMostrarEquipo = document.getElementById('mostrar_tabla_equipo12');
 botonOcultarEquipo.style.display = '';
 botonMostrarEquipo.style.display = 'none';
 document.getElementById('ocultar_tabla_equipo12').onclick = function () {
-    ocultarTablaEquipo12.style.display =  'none';
-    ocultarTablaEquipo1.style.display =  'none';
+    ocultarTablaEquipo12.style.display = 'none';
+    ocultarTablaEquipo1.style.display = 'none';
     botonOcultarEquipo.style.display = 'none';
     botonMostrarEquipo.style.display = '';
 
@@ -895,8 +915,8 @@ document.getElementById('ocultar_tabla_equipo12').onclick = function () {
 
 document.getElementById('mostrar_tabla_equipo12').onclick = function () {
     botonMostrarEquipo.style.display = '';
-    ocultarTablaEquipo12.style.display =  '';
-    ocultarTablaEquipo1.style.display =  '';
+    ocultarTablaEquipo12.style.display = '';
+    ocultarTablaEquipo1.style.display = '';
     botonOcultarEquipo.style.display = '';
     botonMostrarEquipo.style.display = 'none';
 }
@@ -928,18 +948,18 @@ document.getElementById('start_sanciones_juego').onclick = function () {
 // STOP CRONOMETRO JUEGO
 
 document.getElementById('stop_observaciones_juego').onclick = function () {
-    
+
     cronometroJuego.stop();
 
 }
 document.getElementById('d_sancion').onclick = function () {
-    
+
     cronometroJuego.stop();
 
 }
 
 document.getElementById('stop_sanciones_juego').onclick = function () {
-    
+
     cronometroJuego.stop();
 
 }
@@ -976,7 +996,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-}); 
+});
 // ENVIO DE FORM CON ENTER --------------------------------------------------------------------------------------------------=======----------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
     const textareaSanciones = document.querySelector('textarea[name="Observacion_escrita_sanciones"]');
@@ -989,6 +1009,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-}); 
+});
 
-//CONTENTEDITABLE PARA TODO Y ACTIVAR DOBLE CLICK
+// NUEVO PARTIDO REINICIA TODOS LOS CAMPOS
+
+const nuevoPartidoBtn = document.getElementById('modale_nuevo_partido_si');
+nuevoPartidoBtn.addEventListener('click', function () {
+    // Reinicia los cronómetros
+    cronometroGrabado.reset();
+    cronometroJuego.reset();
+
+    // Limpia las tablas de observaciones y sanciones
+    const cuerpoTablaObservaciones = document.getElementById('tabla-observaciones-extra');
+    cuerpoTablaObservaciones.innerHTML = '';
+
+    document.querySelectorAll('input[type="text"], textarea').forEach(input => input.value = '');
+
+// Resetea los selects a su valor por defecto
+    document.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
+    // Reinicia los títulos de los equipos
+    document.querySelectorAll('h3[contenteditable="true"]').forEach(h3 => h3.textContent = 'EQUIPO');
+    // Reinicia los títulos de los equipos
+    document.querySelectorAll('td').forEach(td => td.textContent = '');
+    document.querySelectorAll('td').forEach(td => td.style.backgroundColor = '');
+});
+// -----------------------------------------------------------------------------------------------------------------
