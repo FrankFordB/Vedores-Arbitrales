@@ -90,7 +90,16 @@ h3[contenteditable="true"] {
 .Tiempo_de_juego_button:active {
     background-color: #bb8d0e4f;
 }
-
+.tanteador {
+    cursor: pointer;
+    
+    padding: 10px 40px;
+    background-color: #72cbff2a;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #000000;
+}
 /* SANCIONES */
 .Sanciones {
     display: flex;

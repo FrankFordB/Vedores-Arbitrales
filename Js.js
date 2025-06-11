@@ -237,6 +237,41 @@ function Cronometro(displayId, startId, stopId, resetId, selectId, maxSeconds = 
 }
 
 
+// TANTEADOR SUMA Y RESTA LOCAL
+
+document.addEventListener('DOMContentLoaded', function () {
+    function actualizarTanteador(id, delta) {
+        const tanteador = document.getElementById(id);
+        let valor = parseInt(tanteador.textContent, 10) || 0;
+        valor += delta;
+        if (valor < 0) valor = 0;
+        tanteador.textContent = valor;
+    }
+
+    // Local
+    const tanteadorLocal = document.getElementById('tanteador_local');
+    tanteadorLocal.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        if (e.button === 2) { // Click derecho
+            actualizarTanteador('tanteador_local', -1);
+        } else if (e.button === 0) { // Click izquierdo
+            actualizarTanteador('tanteador_local', 1);
+        }
+    });
+    tanteadorLocal.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Visitante
+    const tanteadorVisitante = document.getElementById('tanteador_visitante');
+    tanteadorVisitante.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        if (e.button === 2) { // Click derecho
+            actualizarTanteador('tanteador_visitante', -1);
+        } else if (e.button === 0) { // Click izquierdo
+            actualizarTanteador('tanteador_visitante', 1);
+        }
+    });
+    tanteadorVisitante.addEventListener('contextmenu', e => e.preventDefault());
+});
 
 // EVITAR SALTO DE LINEA EN H3 Y MAXIMO DE CARACTERES // -------------------------------------------------------------------------------------------------=======----------------------------------------------------
 document.querySelectorAll('h3[contenteditable="true"]').forEach(function (h3) {
@@ -636,7 +671,7 @@ formObservaciones.addEventListener('submit', function (e) {
 
     function estadoColor(estado) {
         if (estado === 'Bien') return 'green';
-        if (estado === 'Regular') return 'yellow';
+        if (estado === 'Ver') return 'yellow';
         if (estado === 'Mal') return 'red';
         return '';
     }
@@ -652,7 +687,7 @@ formObservaciones.addEventListener('submit', function (e) {
     <td style="text-align: center; border: 1px solid black; padding: 8px; background-color:${color}">
         <select name="tablaCreadaSelect" style="background-color:${color}; width: 100%; height: 100%; border: none; color: black; font-weight: bold;" class="form-select">
             <option value="Bien" style="background-color:green" ${Bien === 'Bien' ? 'selected' : ''}><span class="valor-select-print">Bien</span></option>
-            <option value="Regular" style="background-color:yellow" ${Bien === 'Regular' ? 'selected' : ''}>Regular</option>
+            <option value="Ver" style="background-color:yellow" ${Bien === 'Ver' ? 'selected' : ''}>Ver</option>
             <option value="Mal" style="background-color:red" ${Bien === 'Mal' ? 'selected' : ''}>Mal</option>
         </select>
     </td>
@@ -666,7 +701,7 @@ formObservaciones.addEventListener('submit', function (e) {
         if (this.value === 'Bien') {
             td.style.backgroundColor = 'green';
             select.style.backgroundColor = 'green';
-        } else if (this.value === 'Regular') {
+        } else if (this.value === 'Ver') {
             td.style.backgroundColor = 'yellow';
             select.style.backgroundColor = 'yellow';
         } else if (this.value === 'Mal') {
@@ -760,7 +795,7 @@ formObservacionesSanciones.addEventListener('submit', function (e) {
 
     function estadoColorSancion(estadoColorSancion) {
         if (estadoColorSancion === 'Bien') return 'green';
-        if (estadoColorSancion === 'Regular') return 'yellow';
+        if (estadoColorSancion === 'Ver') return 'yellow';
         if (estadoColorSancion === 'Mal') return 'red';
         return '';
     }
@@ -779,7 +814,7 @@ formObservacionesSanciones.addEventListener('submit', function (e) {
     <td style="text-align: center; border: 1px solid black; padding: 8px; background-color:${colorSancion}">
         <select name="tablaCreadaSelectAmarilla" style="background-color:${colorSancion}; width: 100%; height: 100%; border: none; color: black; font-weight: bold;" class="form-select">
             <option value="Bien" style="background-color:green" ${BienSancion === 'Bien' ? 'selected' : ''}><span class="valor-select-print">Bien</span></option>
-            <option value="Regular" style="background-color:yellow" ${BienSancion === 'Regular' ? 'selected' : ''}>Regular</option>
+            <option value="Ver" style="background-color:yellow" ${BienSancion === 'Ver' ? 'selected' : ''}>Ver</option>
             <option value="Mal" style="background-color:red" ${BienSancion === 'Mal' ? 'selected' : ''}>Mal</option>
         </select>
     </td>
@@ -793,7 +828,7 @@ formObservacionesSanciones.addEventListener('submit', function (e) {
         if (this.value === 'Bien') {
             td.style.backgroundColor = 'green';
             selectAmarilla.style.backgroundColor = 'green';
-        } else if (this.value === 'Regular') {
+        } else if (this.value === 'Ver') {
             td.style.backgroundColor = 'yellow';
             selectAmarilla.style.backgroundColor = 'yellow';
         } else if (this.value === 'Mal') {

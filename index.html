@@ -64,7 +64,7 @@
                   </label>
                   <label
                     style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
-                    REGULAR <input id="modal_regular" type="radio" name="estado" value="Regular" required>
+                    VER <input id="modal_regular" type="radio" name="estado" value="Ver" required>
                   </label>
                   <label
                     style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
@@ -75,33 +75,43 @@
                 <!-- ARBITROS FALTAS TECNICAS -->
 
                 <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style=" padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                  <label style="text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
                     Pasos <input type="radio" name="arbitro_faltas_tecnicas" value="Pasos" required>
                   </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  <label style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
                     Ataque <input type="radio" name="arbitro_faltas_tecnicas" value="Ataque" required>
                   </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                  <label style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
                     Golpe <input type="radio" name="arbitro_faltas_tecnicas" value="Golpe" required>
                   </label>
                 </div>
                 <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
                     Simulación <input type="radio" name="arbitro_faltas_tecnicas" value="Simulacion" required>
                   </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  <label style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
                     Camiseta <input type="radio" name="arbitro_faltas_tecnicas" value="Camiseta" required>
                   </label>
                   <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Toque Contra <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
+                    Toque <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
                   </label>
                 </div>
-                <div
-                  style="display: flex; text-align: center; justify-content: space-between; align-content: center; align-items: center;">
-                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
                     7 metros <input type="radio" name="arbitro_faltas_tecnicas" value="7 metros" required>
                   </label>
+                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                    T.L <input type="radio" name="arbitro_faltas_tecnicas" value="T.L" required>
+                  </label>
+                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                    S. Arco    <input type="radio" name="arbitro_faltas_tecnicas" value="S. Arco" required>
+                  </label>
 
+                </div>
+                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                    Otros <input type="radio" name="arbitro_faltas_tecnicas" value="Otros" required>
+                  </label>
                 </div>
                 <!-- ARBITROS -->
 
@@ -249,7 +259,7 @@
                   </label>
                   <label
                     style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
-                    REGULAR <input id="modal_regular" type="radio" name="estado" value="Regular" required>
+                    Ver <input id="modal_regular" type="radio" name="estado" value="Ver" required>
                   </label>
                   <label
                     style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
@@ -361,7 +371,7 @@
                 </label>
                 <label
                   style="background-color:  orange; padding: 1%; cursor: pointer;width: 25%;text-align: center; font-weight: bold;  color: whitesmoke;">
-                  Regular <input type="radio" name="estado_sanciones" value="Regular">
+                  VER <input type="radio" name="estado_sanciones" value="Ver">
                 </label>
                 <label
                   style="background-color:red; padding: 1%; width: 25%; cursor: pointer;text-align: center; font-weight: bold; color: whitesmoke;">
@@ -440,7 +450,10 @@
       id="mostrar_tabla_equipo12">MOSTRAR SANCIONES </button></div>
   <div class="Equipo1_equipo2">
     <h3 contenteditable="true">Equipo 1</h3>
+    <h4 id="tanteador_local" class="tanteador">0</h4>
+
     <h3 contenteditable="true">Equipo 2</h3>
+    <h4 id="tanteador_visitante" class="tanteador">0</h4>
   </div>
   <div class="equipo">
 
