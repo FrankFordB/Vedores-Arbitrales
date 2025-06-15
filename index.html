@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- // bootstrap 5.3 -->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,141 +12,154 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="Js.js" defer></script>
+
 </head>
 
-<body style="background-color: #fffffff6">
+<body id="tabla-observaciones" style="background-color: #fffffff6">
 
 
   <!-- TIEMPO DE JUEGO -->
   <div class="encabezado">
     <img class="logo_confe" src="Imagenes\CAH__1.png">
     <h1 style="display: flex; align-items: center;">Comisión Nacional De Árbitros</h1>
-    <div> <button style="display: none;" class="Sanciones_button">Editar</button> <button data-bs-toggle="modal"
-      data-bs-target="#modal_nuevo_partido" id="nuevo_partido" class="Sanciones_button"> Nuevo Partido</button>
-    <!-- MODAL OBSERVACIONES -->
-        <form id="Observacion_Arbitros">
-          <div class="modal" id="modal_observacion" tabindex="-1">
-            <div class="modal-dialog"">
+    <div style="display: flex; flex-direction: column; gap: 8px;"> <button style="display: none;" class="Sanciones_button">Editar</button> <button data-bs-toggle="modal"
+        data-bs-target="#modal_nuevo_partido" id="nuevo_partido" class="Sanciones_button"> Nuevo Partido</button><button
+        class="Sanciones_button" id="descargarImagen">Descargar Partido</button>
+      <!-- MODAL OBSERVACIONES -->
+      <form id="Observacion_Arbitros">
+        <div class="modal" id="modal_observacion" tabindex="-1">
+          <div class="modal-dialog"">
         <div  class=" modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Observación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
+            <div class="modal-header">
+              <h5 class="modal-title">Observación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
 
-              <div id="modal_tiempo_juego_display"
-                style="margin: 2% 0%; display: flex;justify-content: center; flex-direction: column-reverse; align-items: center;"
-                id="cronometro-juego">
-                <div style="font-size: 20px;" id="display_juego_observaciones">00:00:00</div>
-                <div>
-                  <button type="button" class="Tiempo_de_juego_button" id="start_observaciones_juego"><i
-                      class="fa-solid fa-play" style="color: black;"></i></button>
-                  <button type="button" class="Tiempo_de_juego_button" id="stop_observaciones_juego"><i
-                      class="fa-solid fa-pause" style="color: black;"></i></button>
-                </div>
-              </div>
-
-
-              <div style="display: none;" class="reloj_modal">
-
-                <label> Tiempo Grabado: <span id="valor-minutos-grabacion"></span>
-                </label>
-                <label>
-                  Tiempo de Juego: <span id="valor-minutos-juego"></span>
-                </label>
-              </div>
-
-              <!-- //dfas asdfasdfadddddddddddddddddddddddddddddddddddd -->
-              <div class="modal_Observaciones_foto">
-                <div class="modal-body" style="display: flex; justify-content: space-around;">
-                  <label
-                    style="background-color: green; cursor: pointer; padding: 1%; width: 25%; font-weight: bold; margin-top:3%; color: whitesmoke; text-align: center; ">
-                    BIEN <input type="radio" name="estado" value="Bien" required>
-                  </label>
-                  <label
-                    style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
-                    VER <input id="modal_regular" type="radio" name="estado" value="Ver" required>
-                  </label>
-                  <label
-                    style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
-                    MAL <input id="modal_mal" type="radio" name="estado" value="Mal" required>
-                  </label>
-
-                </div>
-                <!-- ARBITROS FALTAS TECNICAS -->
-
-                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style="text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
-                    Pasos <input type="radio" name="arbitro_faltas_tecnicas" value="Pasos" required>
-                  </label>
-                  <label style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Ataque <input type="radio" name="arbitro_faltas_tecnicas" value="Ataque" required>
-                  </label>
-                  <label style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
-                    Golpe <input type="radio" name="arbitro_faltas_tecnicas" value="Golpe" required>
-                  </label>
-                </div>
-                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Simulación <input type="radio" name="arbitro_faltas_tecnicas" value="Simulacion" required>
-                  </label>
-                  <label style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Camiseta <input type="radio" name="arbitro_faltas_tecnicas" value="Camiseta" required>
-                  </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Toque <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
-                  </label>
-                </div>
-                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
-                    7 metros <input type="radio" name="arbitro_faltas_tecnicas" value="7 metros" required>
-                  </label>
-                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
-                    T.L <input type="radio" name="arbitro_faltas_tecnicas" value="T.L" required>
-                  </label>
-                  <label style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
-                    S. Arco    <input type="radio" name="arbitro_faltas_tecnicas" value="S. Arco" required>
-                  </label>
-
-                </div>
-                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
-                    Otros <input type="radio" name="arbitro_faltas_tecnicas" value="Otros" required>
-                  </label>
-                </div>
-                <!-- ARBITROS -->
-
-                <div style="display: flex; justify-content: space-around; margin-bottom: 5%;  ">
-                  <label 
-                    style="text-transform: uppercase; text-align: center; background-color: rgba(185, 222, 255, 0.678); padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                     ÁRBITRO 1 <input type="radio" name="arbitro_Correcto" value="Arbitro 1" required>
-                  </label>
-                  <label 
-                    style="text-transform: uppercase; text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                    ÁRBITRO 2 <input type="radio" name="arbitro_Correcto" value="Arbitro 2" required>
-                  </label>
-                  <label
-                    style="text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                    AMBOS <input type="radio" name="arbitro_Correcto" value="Ambos" required>
-                  </label>
-                </div>
-
-              </div>
-              <!-- `````````````````````````````````````` -->
-
-              <label keydown.submit(modal-footer) style="display: flex; justify-content: center;"><textarea
-                  style="width: 90%; height: 8dvh; margin-top: 2dvh;" placeholder="Escribe tu observacion aqui..."
-                  name="Observacion_escrita"></textarea></label>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+            <div id="modal_tiempo_juego_display"
+              style="margin: 2% 0%; display: flex;justify-content: center; flex-direction: column-reverse; align-items: center;"
+              id="cronometro-juego">
+              <div style="font-size: 20px;" id="display_juego_observaciones">00:00:00</div>
+              <div>
+                <button type="button" class="Tiempo_de_juego_button" id="start_observaciones_juego"><i
+                    class="fa-solid fa-play" style="color: black;"></i></button>
+                <button type="button" class="Tiempo_de_juego_button" id="stop_observaciones_juego"><i
+                    class="fa-solid fa-pause" style="color: black;"></i></button>
               </div>
             </div>
+
+
+            <div style="display: none;" class="reloj_modal">
+
+              <label> Tiempo Grabado: <span id="valor-minutos-grabacion"></span>
+              </label>
+              <label>
+                Tiempo de Juego: <span id="valor-minutos-juego"></span>
+              </label>
+            </div>
+
+            <!-- //dfas asdfasdfadddddddddddddddddddddddddddddddddddd -->
+            <div class="modal_Observaciones_foto">
+              <div class="modal-body" style="display: flex; justify-content: space-around;">
+                <label
+                  style="background-color: green; cursor: pointer; padding: 1%; width: 25%; font-weight: bold; margin-top:3%; color: whitesmoke; text-align: center; ">
+                  BIEN <input type="radio" name="estado" value="Bien" required>
+                </label>
+                <label
+                  style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
+                  VER <input id="modal_regular" type="radio" name="estado" value="Ver" required>
+                </label>
+                <label
+                  style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
+                  MAL <input id="modal_mal" type="radio" name="estado" value="Mal" required>
+                </label>
+
+              </div>
+              <!-- ARBITROS FALTAS TECNICAS -->
+
+              <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                <label
+                  style="text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                  Pasos <input type="radio" name="arbitro_faltas_tecnicas" value="Pasos" required>
+                </label>
+                <label
+                  style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  Ataque <input type="radio" name="arbitro_faltas_tecnicas" value="Ataque" required>
+                </label>
+                <label
+                  style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                  Golpe <input type="radio" name="arbitro_faltas_tecnicas" value="Golpe" required>
+                </label>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                <label
+                  style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  Simulación <input type="radio" name="arbitro_faltas_tecnicas" value="Simulacion" required>
+                </label>
+                <label
+                  style="text-align: start;padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  Camiseta <input type="radio" name="arbitro_faltas_tecnicas" value="Camiseta" required>
+                </label>
+                <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                  Toque <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
+                </label>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                <label
+                  style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; "
+                  required>
+                  7 metros <input type="radio" name="arbitro_faltas_tecnicas" value="7 metros" required>
+                </label>
+                <label
+                  style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; "
+                  required>
+                  T.L <input type="radio" name="arbitro_faltas_tecnicas" value="T.L" required>
+                </label>
+                <label
+                  style=" text-align: start; padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; "
+                  required>
+                  S. Arco <input type="radio" name="arbitro_faltas_tecnicas" value="S. Arco" required>
+                </label>
+
+              </div>
+              <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+                <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                  Otros <input type="radio" name="arbitro_faltas_tecnicas" value="Otros" required>
+                </label>
+              </div>
+              <!-- ARBITROS -->
+
+              <div style="display: flex; justify-content: space-around; margin-bottom: 5%;  ">
+                <label
+                  style="text-transform: uppercase; text-align: center; background-color: rgba(185, 222, 255, 0.678); padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                  ÁRBITRO 1 <input type="radio" name="arbitro_Correcto" value="Arbitro 1" required>
+                </label>
+                <label
+                  style="text-transform: uppercase; text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                  ÁRBITRO 2 <input type="radio" name="arbitro_Correcto" value="Arbitro 2" required>
+                </label>
+                <label
+                  style="text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                  AMBOS <input type="radio" name="arbitro_Correcto" value="Ambos" required>
+                </label>
+              </div>
+
+            </div>
+            <!-- `````````````````````````````````````` -->
+
+            <label keydown.submit(modal-footer) style="display: flex; justify-content: center;"><textarea
+                style="width: 90%; height: 8dvh; margin-top: 2dvh;" placeholder="Escribe tu observacion aqui..."
+                name="Observacion_escrita"></textarea></label>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
           </div>
-      </div>
-      </form>
+        </div>
     </div>
+    </form>
+  </div>
 
   </div>
   <div>
@@ -154,6 +168,7 @@
       <div class="Tiempo_de_juego">
 
         <div style="display: flex; align-items: center;">
+
           <h2>Tiempo de Grabado</h2>
         </div>
         <div>
@@ -195,12 +210,16 @@
 
       <!-- SANCIONES -->
       <div class="Sanciones">
-        <div>
+        <div style="display: flex; flex-direction: column; gap: 8px "><div>
           <button class="Sanciones_button" data-bs-toggle="modal" data-bs-target="#modal_sanciones">A</button>
           <button class="Sanciones_button" id="dos_minutos" value="Bien" name="dos_minutos_boton" data-bs-toggle="modal"
             data-bs-target="#modal_sanciones">2</button>
           <button class="Sanciones_button" id="d_sancion" data-bs-toggle="modal"
-            data-bs-target="#modal_sanciones">D</button>
+            data-bs-target="#modal_sanciones">D</button></div><div>
+             <button class="Sanciones_button"
+      id="ocultar_tabla_equipo12">OCULTAR SANCIONES </button></div>
+       <button class="Sanciones_button"
+      id="mostrar_tabla_equipo12">MOSTRAR SANCIONES </button>
         </div>
         <div>
           <button type="button" class="Sanciones_button" data-bs-toggle="modal"
@@ -208,225 +227,119 @@
         </div>
         <div>
           <div class="arbitros_input_master">
-            <h7>ÁRBITRO 1 <input  class="arbitro_input" id="Arbitro1" type="text"></h7>
+            <h7>ÁRBITRO 1 <input class="arbitro_input" id="Arbitro1" type="text"></h7>
             <h7>ÁRBITRO 2 <input class="arbitro_input" id="Arbitro2" type="text"></h7>
           </div>
           <div>
-            
+
           </div>
         </div>
       </div>
 
-        <!-- MODAL OBSERVACIONES -->
-        <form id="Observacion_Arbitros">
-          <div class="modal" id="modal_observacion" tabindex="-1">
-            <div class="modal-dialog"">
-        <div  class=" modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Observación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-
-
-              <div id="modal_tiempo_juego_display"
-                style="margin: 2% 0%; display: flex;justify-content: center; flex-direction: column-reverse; align-items: center;"
-                id="cronometro-juego">
-                <div style="font-size: 20px;" id="display_juego_observaciones">00:00:00</div>
-                <div>
-                  <button type="button" class="Tiempo_de_juego_button" id="start_observaciones_juego"><i
-                      class="fa-solid fa-play" style="color: black;"></i></button>
-                  <button type="button" class="Tiempo_de_juego_button" id="stop_observaciones_juego"><i
-                      class="fa-solid fa-pause" style="color: black;"></i></button>
-                </div>
-              </div>
-
-
-              <div style="display: none;" class="reloj_modal">
-
-                <label> Tiempo Grabado: <span id="valor-minutos-grabacion"></span>
-                </label>
-                <label>
-                  Tiempo de Juego: <span id="valor-minutos-juego"></span>
-                </label>
-              </div>
-
-              <!-- //dfas asdfasdfadddddddddddddddddddddddddddddddddddd -->
-              <div class="modal_Observaciones_foto">
-                <div class="modal-body" style="display: flex; justify-content: space-around;">
-                  <label
-                    style="background-color: green; cursor: pointer; padding: 1%; width: 25%; font-weight: bold; margin-top:3%; color: whitesmoke; text-align: center; ">
-                    BIEN <input type="radio" name="estado" value="Bien" required>
-                  </label>
-                  <label
-                    style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
-                    Ver <input id="modal_regular" type="radio" name="estado" value="Ver" required>
-                  </label>
-                  <label
-                    style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
-                    MAL <input id="modal_mal" type="radio" name="estado" value="Mal" required>
-                  </label>
-
-                </div>
-                <!-- ARBITROS FALTAS TECNICAS -->
-
-                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style=" padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
-                    Pasos <input type="radio" name="arbitro_faltas_tecnicas" value="Pasos" required>
-                  </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Ataque <input type="radio" name="arbitro_faltas_tecnicas" value="Ataque" required>
-                  </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
-                    Golpe <input type="radio" name="arbitro_faltas_tecnicas" value="Golpe" required>
-                  </label>
-                </div>
-                <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Simulación <input type="radio" name="arbitro_faltas_tecnicas" value="Simulacion" required>
-                  </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Camiseta <input type="radio" name="arbitro_faltas_tecnicas" value="Camiseta" required>
-                  </label>
-                  <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                    Toque Contra <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
-                  </label>
-                </div>
-                <div
-                  style="display: flex; text-align: center; justify-content: space-between; align-content: center; align-items: center;">
-                  <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
-                    7 metros <input type="radio" name="arbitro_faltas_tecnicas" value="7 metros" required>
-                  </label>
-
-                </div>
-                <!-- ARBITROS -->
-
-                <div style="display: flex; justify-content: space-around; margin-bottom: 5%;  ">
-                  <label 
-                    style="text-transform: uppercase; text-align: center; background-color: rgba(185, 222, 255, 0.678); padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                     ÁRBITRO 1 <input type="radio" name="arbitro_Correcto" value="Arbitro 1" required>
-                  </label>
-                  <label 
-                    style="text-transform: uppercase; text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                    ÁRBITRO 2 <input type="radio" name="arbitro_Correcto" value="Arbitro 2" required>
-                  </label>
-                  <label
-                    style="text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                    AMBOS <input type="radio" name="arbitro_Correcto" value="Ambos" required>
-                  </label>
-                </div>
-
-              </div>
-              <!-- `````````````````````````````````````` -->
-
-              <label keydown.submit(modal-footer) style="display: flex; justify-content: center;"><textarea
-                  style="width: 90%; height: 8dvh; margin-top: 2dvh;" placeholder="Escribe tu observacion aqui..."
-                  name="Observacion_escrita"></textarea></label>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-            </div>
-          </div>
-      </div>
-      </form>
-
-      <!-- MODAL SANCIONES 2min  D Y D+A -->
-      <form id="Sanciones_Arbitros">
-        <div class="modal" id="modal_sanciones" tabindex="-1">
+      <!-- MODAL OBSERVACIONES -->
+      <form id="Observacion_Arbitros">
+        <div class="modal" id="modal_observacion" tabindex="-1">
           <div class="modal-dialog"">
-        <div class=" modal-content">
+        <div  class=" modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Sanciones</h5>
+              <h5 class="modal-title">Observación</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
 
             <div id="modal_tiempo_juego_display"
               style="margin: 2% 0%; display: flex;justify-content: center; flex-direction: column-reverse; align-items: center;"
               id="cronometro-juego">
-              <div style="font-size: 20px;" id="display_juego_sanciones">00:00:00</div>
+              <div style="font-size: 20px;" id="display_juego_observaciones">00:00:00</div>
               <div>
-                <button type="button" class="Tiempo_de_juego_button" id="start_sanciones_juego"><i
+                <button type="button" class="Tiempo_de_juego_button" id="start_observaciones_juego"><i
                     class="fa-solid fa-play" style="color: black;"></i></button>
-                <button type="button" class="Tiempo_de_juego_button" id="stop_sanciones_juego"><i
+                <button type="button" class="Tiempo_de_juego_button" id="stop_observaciones_juego"><i
                     class="fa-solid fa-pause" style="color: black;"></i></button>
               </div>
             </div>
+
+
             <div style="display: none;" class="reloj_modal">
 
-              <label> Tiempo Grabado: <span id="valor-minutos-grabacion-sanciones"></span>
+              <label> Tiempo Grabado: <span id="valor-minutos-grabacion"></span>
               </label>
               <label>
-                Tiempo de Juego: <span id="valor-minutos-juego-sanciones"></span>
+                Tiempo de Juego: <span id="valor-minutos-juego"></span>
               </label>
             </div>
 
-
-            <!--1111111111111111111111111111111111111111111111111111111111111111111111111111111 DESDE ACA -->
+            <!-- //dfas asdfasdfadddddddddddddddddddddddddddddddddddd -->
             <div class="modal_Observaciones_foto">
               <div class="modal-body" style="display: flex; justify-content: space-around;">
                 <label
-                  style="background-color: green; cursor: pointer; padding: 1%; width: 25%; text-align: center; font-weight: bold; color: whitesmoke;">
-                  Bien <input type="radio" name="estado_sanciones" value="Bien">
+                  style="background-color: green; cursor: pointer; padding: 1%; width: 25%; font-weight: bold; margin-top:3%; color: whitesmoke; text-align: center; ">
+                  BIEN <input type="radio" name="estado" value="Bien" required>
                 </label>
                 <label
-                  style="background-color:  orange; padding: 1%; cursor: pointer;width: 25%;text-align: center; font-weight: bold;  color: whitesmoke;">
-                  VER <input type="radio" name="estado_sanciones" value="Ver">
+                  style="background-color:  orange; padding: 1%; cursor: pointer; width: 25%; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
+                  Ver <input id="modal_regular" type="radio" name="estado" value="Ver" required>
                 </label>
                 <label
-                  style="background-color:red; padding: 1%; width: 25%; cursor: pointer;text-align: center; font-weight: bold; color: whitesmoke;">
-                  Mal <input type="radio" name="estado_sanciones" value="Mal">
+                  style="background-color:red; padding: 1%; width: 25%; cursor: pointer; font-weight: bold;text-align: center; margin-top: 3%; color: whitesmoke;">
+                  MAL <input id="modal_mal" type="radio" name="estado" value="Mal" required>
                 </label>
 
               </div>
               <!-- ARBITROS FALTAS TECNICAS -->
 
-              <div style="display: flex; justify-content: space-around;  align-content: center; align-items: center;">
+              <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
                 <label style=" padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
-                  7 metros <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="7 metros" required>
+                  Pasos <input type="radio" name="arbitro_faltas_tecnicas" value="Pasos" required>
                 </label>
                 <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                  Toque Contra <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Toque Contra"
-                    required>
+                  Ataque <input type="radio" name="arbitro_faltas_tecnicas" value="Ataque" required>
                 </label>
                 <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
-                  Golpe <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Golpe" required>
+                  Golpe <input type="radio" name="arbitro_faltas_tecnicas" value="Golpe" required>
                 </label>
               </div>
               <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
                 <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                  Simulación <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Simulacion" required>
+                  Simulación <input type="radio" name="arbitro_faltas_tecnicas" value="Simulacion" required>
                 </label>
                 <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                  Camiseta <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Camiseta" required>
+                  Camiseta <input type="radio" name="arbitro_faltas_tecnicas" value="Camiseta" required>
                 </label>
                 <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
-                  Otros <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Otros" required>
+                  Toque Contra <input type="radio" name="arbitro_faltas_tecnicas" value="Toque Contra" required>
                 </label>
               </div>
+              <div
+                style="display: flex; text-align: center; justify-content: space-between; align-content: center; align-items: center;">
+                <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; " required>
+                  7 metros <input type="radio" name="arbitro_faltas_tecnicas" value="7 metros" required>
+                </label>
 
-              <!-- ARBITROS MODAL -->
-              <div style="display: flex; justify-content: space-around; margin-bottom: 5%;    ">
-                <label
-                  style=" text-transform: uppercase; background-color: rgba(185, 222, 255, 0.678); padding: 1%;text-align: center; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                  ÁRBITRO 1 <input type="radio" name="arbitro_correccion_sanciones" value="Arbitro 1">
-                </label>
-                <label
-                  style="text-transform: uppercase; padding: 1%; background-color: rgba(185, 222, 255, 0.678); width: 25%;text-align: center;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                  ÁRBITRO 2 <input type="radio" name="arbitro_correccion_sanciones" value="Arbitro 2">
-                </label>
-                <label
-                  style=" background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;text-align: center;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
-                  AMBOS <input type="radio" name="arbitro_correccion_sanciones" value="Ambos">
-                </label>
-                <!--111111111111111111111111111111111111111111111111111111111111111111111111111111111111 HASTA ACA -->
               </div>
+              <!-- ARBITROS -->
 
+              <div style="display: flex; justify-content: space-around; margin-bottom: 5%;  ">
+                <label
+                  style="text-transform: uppercase; text-align: center; background-color: rgba(185, 222, 255, 0.678); padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                  ÁRBITRO 1 <input type="radio" name="arbitro_Correcto" value="Arbitro 1" required>
+                </label>
+                <label
+                  style="text-transform: uppercase; text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                  ÁRBITRO 2 <input type="radio" name="arbitro_Correcto" value="Arbitro 2" required>
+                </label>
+                <label
+                  style="text-align: center;background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                  AMBOS <input type="radio" name="arbitro_Correcto" value="Ambos" required>
+                </label>
+              </div>
 
             </div>
-            <label style="display: flex; justify-content: center;"><textarea
+            <!-- `````````````````````````````````````` -->
+
+            <label keydown.submit(modal-footer) style="display: flex; justify-content: center;"><textarea
                 style="width: 90%; height: 8dvh; margin-top: 2dvh;" placeholder="Escribe tu observacion aqui..."
-                name="Observacion_escrita_sanciones" id=""></textarea></label>
+                name="Observacion_escrita"></textarea></label>
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -436,6 +349,111 @@
         </div>
     </div>
     </form>
+
+    <!-- MODAL SANCIONES 2min  D Y D+A -->
+    <form id="Sanciones_Arbitros">
+      <div class="modal" id="modal_sanciones" tabindex="-1">
+        <div class="modal-dialog"">
+        <div class=" modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Sanciones</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div id="modal_tiempo_juego_display"
+            style="margin: 2% 0%; display: flex;justify-content: center; flex-direction: column-reverse; align-items: center;"
+            id="cronometro-juego">
+            <div style="font-size: 20px;" id="display_juego_sanciones">00:00:00</div>
+            <div>
+              <button type="button" class="Tiempo_de_juego_button" id="start_sanciones_juego"><i
+                  class="fa-solid fa-play" style="color: black;"></i></button>
+              <button type="button" class="Tiempo_de_juego_button" id="stop_sanciones_juego"><i
+                  class="fa-solid fa-pause" style="color: black;"></i></button>
+            </div>
+          </div>
+          <div style="display: none;" class="reloj_modal">
+
+            <label> Tiempo Grabado: <span id="valor-minutos-grabacion-sanciones"></span>
+            </label>
+            <label>
+              Tiempo de Juego: <span id="valor-minutos-juego-sanciones"></span>
+            </label>
+          </div>
+
+
+          <!--1111111111111111111111111111111111111111111111111111111111111111111111111111111 DESDE ACA -->
+          <div class="modal_Observaciones_foto">
+            <div class="modal-body" style="display: flex; justify-content: space-around;">
+              <label
+                style="background-color: green; cursor: pointer; padding: 1%; width: 25%; text-align: center; font-weight: bold; color: whitesmoke;">
+                Bien <input type="radio" name="estado_sanciones" value="Bien">
+              </label>
+              <label
+                style="background-color:  orange; padding: 1%; cursor: pointer;width: 25%;text-align: center; font-weight: bold;  color: whitesmoke;">
+                VER <input type="radio" name="estado_sanciones" value="Ver">
+              </label>
+              <label
+                style="background-color:red; padding: 1%; width: 25%; cursor: pointer;text-align: center; font-weight: bold; color: whitesmoke;">
+                Mal <input type="radio" name="estado_sanciones" value="Mal">
+              </label>
+
+            </div>
+            <!-- ARBITROS FALTAS TECNICAS -->
+
+            <div style="display: flex; justify-content: space-around;  align-content: center; align-items: center;">
+              <label style=" padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                7 metros <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="7 metros" required>
+              </label>
+              <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                Toque Contra <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Toque Contra" required>
+              </label>
+              <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold; margin: 1%;">
+                Golpe <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Golpe" required>
+              </label>
+            </div>
+            <div style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+              <label style="  padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                Simulación <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Simulacion" required>
+              </label>
+              <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                Camiseta <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Camiseta" required>
+              </label>
+              <label style="padding: 1%; width: 25%;cursor: pointer; font-weight: bold;margin: 1%; ">
+                Otros <input type="radio" name="arbitro_faltas_tecnicas_sanciones" value="Otros" required>
+              </label>
+            </div>
+
+            <!-- ARBITROS MODAL -->
+            <div style="display: flex; justify-content: space-around; margin-bottom: 5%;    ">
+              <label
+                style=" text-transform: uppercase; background-color: rgba(185, 222, 255, 0.678); padding: 1%;text-align: center; width: 25%;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                ÁRBITRO 1 <input type="radio" name="arbitro_correccion_sanciones" value="Arbitro 1">
+              </label>
+              <label
+                style="text-transform: uppercase; padding: 1%; background-color: rgba(185, 222, 255, 0.678); width: 25%;text-align: center;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                ÁRBITRO 2 <input type="radio" name="arbitro_correccion_sanciones" value="Arbitro 2">
+              </label>
+              <label
+                style=" background-color: rgba(185, 222, 255, 0.678);padding: 1%; width: 25%;text-align: center;cursor: pointer; font-weight: bold; margin-top: 2dvh;">
+                AMBOS <input type="radio" name="arbitro_correccion_sanciones" value="Ambos">
+              </label>
+              <!--111111111111111111111111111111111111111111111111111111111111111111111111111111111111 HASTA ACA -->
+            </div>
+
+
+          </div>
+          <label style="display: flex; justify-content: center;"><textarea
+              style="width: 90%; height: 8dvh; margin-top: 2dvh;" placeholder="Escribe tu observacion aqui..."
+              name="Observacion_escrita_sanciones" id=""></textarea></label>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  </form>
   </div>
 
   </div>
@@ -444,15 +462,15 @@
   </div>
   </div>
   <!-- TABLA DE OBSERVACIONES SANCIONES -->
-  <div style="display: flex; margin-left: 6.5%;margin-bottom: 0.5%;;"> <button class="Sanciones_button"
-      id="ocultar_tabla_equipo12">OCULTAR SANCIONES </button></div>
-  <div style="display: flex; margin-left: 6.5%; margin-bottom: 0.5%;"> <button class="Sanciones_button"
-      id="mostrar_tabla_equipo12">MOSTRAR SANCIONES </button></div>
+  <div style="display: flex; margin-left: 6.5%;margin-bottom: 0.5%;;"></div>
+  <div style="display: flex; margin-left: 6.5%; margin-bottom: 0.5%;"></div>
   <div class="Equipo1_equipo2">
     <h3 contenteditable="true">Equipo 1</h3>
+    <button id="resta_local" class="Botones_resta">-</button>
     <h4 id="tanteador_local" class="tanteador">0</h4>
 
     <h3 contenteditable="true">Equipo 2</h3>
+    <button id="resta_visita" class="Botones_resta">-</button>
     <h4 id="tanteador_visitante" class="tanteador">0</h4>
   </div>
   <div class="equipo">
@@ -869,46 +887,46 @@
       <!-- Remove the container if you want to extend the Footer to full width. -->
 
 
-  <footer style="background-color: #8dd4fd15;" class="bg-dark text-center text-white">
-  <!-- Grid container -->
-  <div style="display: flex; justify-content: center; margin-top: 8%; background-color: #8dd4fd15;" class="container p-4 pb-0">
-    <!-- Section: Social media -->
-    <section  class="mb-4">
-      
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://api.whatsapp.com/send?phone=5492604312716&text=*Hola%20Franco%20%C2%BFComo%20estas%3F%20Te%20queria%20consultar..." role="button"
-        ><i class="fab fa-whatsapp"></i
-      ></a>
-      
+      <footer style="background-color: #8dd4fd15;" class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div style="display: flex; justify-content: center; margin-top: 8%; background-color: #8dd4fd15;"
+          class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
 
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.instagram.com/franco.burgoa1/" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank"
+              href="https://api.whatsapp.com/send?phone=5492604312716&text=*Hola%20Franco%20%C2%BFComo%20estas%3F%20Te%20queria%20consultar..."
+              role="button"><i class="fab fa-whatsapp"></i></a>
 
-      <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.linkedin.com/in/franco-burgoa-4a338514b/" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
 
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://github.com/FrankFordB" role="button"
-        ><i class="fab fa-github"></i
-      ></a>
-    </section>
-    <!-- Section: Social media -->
-  </div>
-  <!-- Grid container -->
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank"
+              href="https://www.instagram.com/franco.burgoa1/" role="button"><i class="fab fa-instagram"></i></a>
 
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: #72cbff2a;">
-    © 2025 Copyright:
-    <a class="text-white" target="_blank" href="https://www.linkedin.com/in/franco-burgoa-4a338514b/">Desarrollado por Franco Burgoa</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-  
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank"
+              href="https://www.linkedin.com/in/franco-burgoa-4a338514b/" role="button"><i
+                class="fab fa-linkedin-in"></i></a>
 
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://github.com/FrankFordB"
+              role="button"><i class="fab fa-github"></i></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: #72cbff2a;">
+          © 2025 Copyright:
+          <a class="text-white" target="_blank" href="https://www.linkedin.com/in/franco-burgoa-4a338514b/">Desarrollado
+            por Franco Burgoa</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 
 </html>

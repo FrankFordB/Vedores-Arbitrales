@@ -273,6 +273,21 @@ document.addEventListener('DOMContentLoaded', function () {
     tanteadorVisitante.addEventListener('contextmenu', e => e.preventDefault());
 });
 
+// BOTONES DE RESTAS
+document.getElementById('resta_local').addEventListener('click', function () {
+    const tanteadorLocal = document.getElementById('tanteador_local');
+    let valor = parseInt(tanteadorLocal.textContent, 10) || 0;
+    valor = Math.max(0, valor - 1);
+    tanteadorLocal.textContent = valor;
+});
+
+document.getElementById('resta_visita').addEventListener('click', function () {
+    const tanteador = document.getElementById('tanteador_visitante');
+    let valor = parseInt(tanteador.textContent, 10) || 0;
+    valor = Math.max(0, valor - 1);
+    tanteador.textContent = valor;
+});
+
 // EVITAR SALTO DE LINEA EN H3 Y MAXIMO DE CARACTERES // -------------------------------------------------------------------------------------------------=======----------------------------------------------------
 document.querySelectorAll('h3[contenteditable="true"]').forEach(function (h3) {
     h3.addEventListener('keydown', function (e) {
@@ -781,7 +796,7 @@ formObservacionesSanciones.addEventListener('submit', function (e) {
     const minutosGrabacionS = document.getElementById('valor-minutos-grabacion-sanciones').textContent.trim();
     const segundosGrabacionSancion = tiempoASegundos(minutosGrabacionS);
     const grabacionMenosSancion = segundosATiempo(Math.max(0, segundosGrabacionSancion - 8));
-    
+
     const minutosJuego = document.getElementById('valor-minutos-juego-sanciones').textContent.trim();
     const segundosJuegoSancion = tiempoASegundos(minutosJuego);
     const juegoMenosSancion = segundosATiempo(segundosJuegoSancion);
@@ -1053,6 +1068,11 @@ nuevoPartidoBtn.addEventListener('click', function () {
     // Reinicia los cronómetros
     cronometroGrabado.reset();
     cronometroJuego.reset();
+    const goleslocales = document.getElementById('tanteador_local');
+    goleslocales.innerHTML = "0";
+
+    const golesvisitante = document.getElementById('tanteador_visitante');
+    golesvisitante.innerHTML = "0";
 
     // Limpia las tablas de observaciones y sanciones
     const cuerpoTablaObservaciones = document.getElementById('tabla-observaciones-extra');
@@ -1060,7 +1080,7 @@ nuevoPartidoBtn.addEventListener('click', function () {
 
     document.querySelectorAll('input[type="text"], textarea').forEach(input => input.value = '');
 
-// Resetea los selects a su valor por defecto
+    // Resetea los selects a su valor por defecto
     document.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
 
     // Reinicia los títulos de los equipos
@@ -1070,3 +1090,78 @@ nuevoPartidoBtn.addEventListener('click', function () {
     document.querySelectorAll('td').forEach(td => td.style.backgroundColor = '');
 });
 // -----------------------------------------------------------------------------------------------------------------
+document.getElementById('descargarImagen').addEventListener('click', function () {
+    var tabla = document.getElementById('tabla-observaciones');
+    html2canvas(tabla).then(function (canvas) {
+        // Crea un enlace para descargar la imagen
+        var link = document.createElement('a');
+        link.download = 'tabla-observaciones.jpg';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+});
+
+
+const arbitro1 = document.getElementById('Arbitro1');
+if (arbitro1) {
+    arbitro1.value = localStorage.getItem('Arbitro1') || '';
+    arbitro1.addEventListener('input', () => {
+        localStorage.setItem('Arbitro1', arbitro1.value);
+    });
+}
+
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    e.returnValue = ''; // Mostrará el mensaje de confirmación estándar del navegador
+});
+
+/////////////////////////////////////////////////////////////////////
+
+// Agrega un botón de micrófono a cada textarea y activa reconocimiento de voz
+document.addEventListener('DOMContentLoaded', function () {
+    if (!('webkitSpeechRecognition' in window)) {
+        // No soportado
+        return;
+    }
+    document.querySelectorAll('textarea').forEach(function (textarea) {
+        // Crea el botón de micrófono
+        const micBtn = document.createElement('button');
+        micBtn.type = 'button';
+        micBtn.innerHTML = '🎤';
+        micBtn.title = 'Dictar por voz';
+        micBtn.style.marginLeft = '5px';
+        micBtn.style.backgroundColor = '#72cbff00';
+        micBtn.style.cursor = 'pointer';
+
+        // Inserta el botón después del textarea
+        textarea.parentNode.insertBefore(micBtn, textarea.nextSibling);
+
+        // Configura el reconocimiento de voz
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'es-ES';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        micBtn.addEventListener('click', function () {
+            recognition.start();
+            micBtn.disabled = true;
+            micBtn.innerHTML = '🎙️...';
+        });
+
+        recognition.onresult = function (event) {
+            const texto = event.results[0][0].transcript;
+            textarea.value += (textarea.value ? ' ' : '') + texto;
+            textarea.dispatchEvent(new Event('input')); // Para disparar otros listeners
+        };
+        recognition.onerror = function () {
+            micBtn.disabled = false;
+            micBtn.innerHTML = '🎤';
+            
+        };
+        recognition.onend = function () {
+            micBtn.disabled = false;
+            micBtn.innerHTML = '🎤';
+        };
+    });
+});
+
