@@ -1,3 +1,23 @@
+// filepath: c:\Users\FrankFord\Desktop\Vedores-Arbitrales-main\Vedores-Arbitrales-main\Js.js
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+const btnPantallaCompleta = document.getElementById('btnPantallaCompleta');
+btnPantallaCompleta.addEventListener('click', function () {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen();
+    }
+});
+
+document.addEventListener('fullscreenchange', function () {
+    if (document.fullscreenElement) {
+        btnPantallaCompleta.textContent = 'Salir de Pantalla Completa';
+    } else {
+        btnPantallaCompleta.textContent = 'Pantalla Completa';
+    }
+});
 // ARBITROS INPUT CAMBIA NOMBRE EN RADIO BUTTONS OBSERVACIONES 
 document.addEventListener('DOMContentLoaded', function () {
     // ARBITRO 1
@@ -1112,9 +1132,8 @@ if (arbitro1) {
 
 window.addEventListener('beforeunload', function (e) {
     e.preventDefault();
-    e.returnValue = ''; // Mostrará el mensaje de confirmación estándar del navegador
+    e.returnValue = ''; // Esto activa el mensaje de confirmación estándar del navegador
 });
-
 /////////////////////////////////////////////////////////////////////
 
 // Agrega un botón de micrófono a cada textarea y activa reconocimiento de voz
