@@ -22,7 +22,7 @@
 }
 
 body {
-    color: #45a049;
+    color: #f2f2f2;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,7 +106,6 @@ h3[contenteditable="true"] {
 
 .tanteador {
     cursor: pointer;
-
     padding: 10px 40px;
     background-color: #72cbff2a;
     font-size: 1.5rem;
@@ -124,6 +123,17 @@ h3[contenteditable="true"] {
 }
 
 .Sanciones_button {
+    padding: 10px 20px;
+    background-color: #bb8d0e4f;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    border-radius: 5px;
+    font-family: var(--fuente-oswald);
+    cursor: pointer;
+}
+.Sanciones_button1{
     padding: 10px 20px;
     background-color: #bb8d0e4f;
     color: rgb(0, 0, 0);
@@ -263,6 +273,7 @@ h3[contenteditable="true"] {
     margin-bottom: 1%;
 }
 @media (max-width: 900px) {
+    
     .Botones_resta{
     display: flex;
     justify-items: center;
@@ -271,9 +282,10 @@ h3[contenteditable="true"] {
     justify-content: center;
     align-content: center;
     align-self: center;
-    margin-left: 14%;
+    
+    margin-bottom: 1%;
     width: 40px;
-    height: 40px;
+    padding: 10px;
     background-color: #bb8d0e4f;
     color: white;
     border: none;
@@ -281,10 +293,10 @@ h3[contenteditable="true"] {
     border-radius: 5px;
     cursor: pointer;
 }
-    body {
-        font-size: 16px;
-        padding: 8px;
-    }
+.observaciones_tabla {
+    margin-top: 3%;
+    max-width: 100%;
+}
 
     .Tiempo_de_juego {
         width: 100%;
@@ -309,19 +321,39 @@ h3[contenteditable="true"] {
     }
 
     th,
-    td {
+    td {font-size: 16px;
         padding: 8px !important;
+        max-width: 100dvh;
     }
-
-    .Sanciones_button,
-    button {
-        font-size: 14px;
+    textarea {
+    width: 100%;
+    min-width: 200px;
+    max-width: 100%;
+    min-height: 80px;
+    resize: vertical;
+    white-space: pre-wrap; /* Asegura saltos de línea */
+    overflow-wrap: break-word; /* Rompe palabras largas */
+}
+.Sanciones_button
+    {
+        font-size: 16px;
         padding: 8px 12px;
     }
+.Sanciones_button1{
+    
+    margin-left: 3%;
+}
 .Pantalla_completa{ display: flex;
     justify-self: end;
     border-radius: 4px;
     margin-bottom: 1%;
 }
+.equipos_query{
+    width: 33%;
+    max-width: 33%;
+    overflow: hidden;
+    
+}
+
     /* Ajusta otros elementos según tu diseño */
 }
